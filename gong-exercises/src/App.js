@@ -1,10 +1,6 @@
 import React from 'react';
 import './App.css';
-import LiveExample from './LiveExample';
-import LiveExampleFormsFunction from './LiveExample-Forms-Function';
-import LiveExampleForms from './LiveExample-Forms';
-import LiveExampleFormsUnControlled from './LiveExample-Forms-Uncontrolled';
-import LiveExampleLifeCycle from './LiveExample-LifeCycle';
+import LiveExampleVDOM from './LiveExample-VDOM';
 
 function App() {
 
@@ -13,10 +9,7 @@ function App() {
       <h1>
         Hello Gong!
       </h1>
-      
-      <LiveExampleForms/>
-      <LiveExampleFormsUnControlled/>
-      <LiveExampleLifeCycle />
+      <LiveExampleVDOM/>
     </div>
   );
 }
