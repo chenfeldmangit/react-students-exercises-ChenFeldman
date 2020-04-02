@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.css';
-import LiveExampleVDOM from './LiveExample-VDOM';
+import GongTitle from './GongTitle';
+import mySvg from './svg-file.svg';
+import LiveExampleForms from './LiveExample-Forms';
 
 function App() {
 
+  let appName = "Application";
+
   return (
     <div className="App">
-      <h1>
-        Hello Gong!
-      </h1>
-      <LiveExampleVDOM/>
+      <LiveExampleForms/>
     </div>
   );
 }

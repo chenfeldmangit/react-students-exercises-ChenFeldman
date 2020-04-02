@@ -29,8 +29,10 @@ class LiveExampleForms extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="name">Name:</label>
           <input type="text" name="name" value={this.state.name} onChange={this.handleFieldChange}></input>
+          {this.state.name !== '' ? "V" : "X"}
           <label htmlFor="name">About Me:</label>
           <textarea value={this.state.about} name="about" onChange={this.handleFieldChange}></textarea>
+          {this.state.about !== '' ? "V" : "X"}
           <select value={this.state.gender} name="gender" onChange={this.handleFieldChange}>
             <option>Male</option>
             <option>Female</option>
