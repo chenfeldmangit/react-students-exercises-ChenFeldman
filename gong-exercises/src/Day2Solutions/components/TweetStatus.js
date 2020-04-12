@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import GongButton from './GongButton';
-import TweetAPI from '../common/TweetAPI';
 
-export default function TweetStatus() {
+export default function TweetStatus(props) {
     const [status,setStatus] = useState("What's Happening?");
 
     const handleAddTweetItem = () => {
-        TweetAPI.addTweet({ name: 'Chenos', description: status });
+        let newTweet = { id: 5 ,name: 'Chenos', description: status };
+        props.setTweets([...props.tweets, newTweet]);
         setStatus('');
     }
 

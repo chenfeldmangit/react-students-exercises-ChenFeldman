@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import TweetStatus from './TweetStatus';
-import TweetAPI from '../common/TweetAPI';
 import NewsFeedComponent from './NewsFeedComponent';
+import useLocalStorage from '../../Hooks-Live-Examples/useLocalStorage';
 
 export default function NewsFeedContainer(props) {
-    const [tweets, setTweets] = useState([]);
-
-    useEffect(() => {
-        TweetAPI.getTweets()
-            .then(result => {
-                setTweets(result);
-            })
-            .catch(err => {
-                console.log(`Error while getting tweets: ${err}`);
-            })
-    }, [tweets])
+    const [tweets,setTweets] = useLocalStorage('tweets',[]);
 
     return (
         <div id="newsFeedWrapper">
-            <TweetStatus />
+            <TweetStatus tweets={tweets} setTweets={setTweets} />
             <NewsFeedComponent tweets={tweets}/>
         </div>
     )
