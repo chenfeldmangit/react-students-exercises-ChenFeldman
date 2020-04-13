@@ -7,8 +7,8 @@ export function UserDataContainer(props){
                                                 password: 'No Password'});
 
     useEffect(() => {
-        console.log('Component did mount/update')
-
+        console.log('Component did mount/update');
+        
         return (() => {
             console.log('Component will unmount');
         })

@@ -11,9 +11,9 @@ function App() {
   return (
     <BrowserRouter>
       <div className="container">
-          <SideMenu />
+        <SideMenu />
         <Switch>
-          <Route path="/" component={NewsFeedContainer} exact/>
+          <Route path="/" component={() => <NewsFeedContainer/>} exact/>
           <Route path="/profile" component={UserProfile}/>
           <Route path="/notifications" component={NotificationsContainer}/>
           <Route component={PageNotFound}/>
