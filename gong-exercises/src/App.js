@@ -1,11 +1,11 @@
 import React from 'react';
-import './Day2Solutions/styles/style.scss';
-import SideMenu from './Day2Solutions/components/SideMenu';
-import NewsFeedContainer from './Day2Solutions/components/NewsFeedContainer';
+import './ReduxSolutions/styles/style.scss';
+import SideMenu from './ReduxSolutions/components/SideMenu';
+import NewsFeedContainer from './ReduxSolutions/components/NewsFeedContainer';
 import {BrowserRouter, Switch, Route } from 'react-router-dom';
-import UserProfile from './Day2Solutions/components/UserProfile';
-import NotificationsContainer from './Day2Solutions/components/NotificationsContainer';
-import PageNotFound from './Day2Solutions/components/PageNotFound';
+import UserProfile from './ReduxSolutions/components/UserProfile';
+import NotificationsContainer from './ReduxSolutions/components/NotificationsContainer';
+import PageNotFound from './ReduxSolutions/components/PageNotFound';
 
 function App() {
   return (

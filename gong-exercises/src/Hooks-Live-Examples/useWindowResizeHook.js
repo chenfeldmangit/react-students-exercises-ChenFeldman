@@ -2,12 +2,20 @@ import { useState, useEffect } from 'react';
 
 function Example() {
   const size = useWindowSize();
+  const newSize = useWindowSizeFunc();
 
   return (
     <div>
       {size.width}px / {size.height}px
     </div>
   );
+}
+
+function useWindowSizeFunc(){
+    return {
+        width: isClient ? window.innerWidth : undefined,
+        height: isClient ? window.innerHeight : undefined
+      };
 }
 
 function useWindowSize() {
