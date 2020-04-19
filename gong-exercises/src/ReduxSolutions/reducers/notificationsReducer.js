@@ -6,9 +6,7 @@ const initialState = [];
 export default function notificationsReducer(state = initialState, action) {
     switch (action.type) {
         case SET_NOTIFICATIONS:
-            let notifications = [...state];
-            notifications = notifications.concat(action.notifications);
-            return notifications;
+            return [...action.notifications];
         default:
             return state;
     }

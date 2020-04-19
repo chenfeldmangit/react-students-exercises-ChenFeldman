@@ -10,9 +10,7 @@ export default function tweetsReducer(state = initialState, action) {
         case ADD_TWEET:
             return [...state, action.tweet];
         case SET_TWEETS:
-            let tweets = [...state];
-            tweets = tweets.concat(action.tweets);
-            return tweets;
+            return [...action.tweets];            
         case LIKE_TWEET:
             break;
         default:

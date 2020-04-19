@@ -56,3 +56,35 @@ let tweetsReducer2 = function(state = [],action){
             return state;
     }
 }
+
+
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import store from '../path/to/store';
+import axios from 'axios';
+
+const TweetsList = (props) => {
+  
+    useEffect(()=> {
+        store.dispatch({
+            type: 'ADD_TWEET',
+            tweet: {title: 'test title', description: 'test description to read'}
+        })
+    },[]);
+
+    return (
+        <div>
+            {props.tweets.map(item => {
+                return <div>item.title</div>;
+            })}
+        </div>
+    )
+}
+
+const mapStateToProps = (store) => {
+  return {
+    tweets: store
+  };
+}
+
+export default connect(mapStateToProps)(TweetsList);
