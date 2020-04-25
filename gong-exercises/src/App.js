@@ -1,11 +1,11 @@
 import React from 'react';
-import './ReduxSolutions/styles/style.scss';
-import SideMenu from './ReduxSolutions/components/SideMenu';
-import NewsFeedContainer from './ReduxSolutions/components/NewsFeedContainer';
+import './ReduxSagaSolutions/styles/style.scss';
+import SideMenu from './ReduxSagaSolutions/components/SideMenu';
+import NewsFeedContainer from './ReduxSagaSolutions/components/NewsFeedContainer';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import UserProfile from './ReduxSolutions/components/UserProfile';
-import NotificationsContainer from './ReduxSolutions/components/NotificationsContainer';
-import PageNotFound from './ReduxSolutions/components/PageNotFound';
+import UserProfile from './ReduxSagaSolutions/components/UserProfile';
+import NotificationsContainer from './ReduxSagaSolutions/components/NotificationsContainer';
+import PageNotFound from './ReduxSagaSolutions/components/PageNotFound';
 
 function App() {
   return (
