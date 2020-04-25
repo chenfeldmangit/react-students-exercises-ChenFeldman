@@ -1,18 +1,20 @@
+import { TweetActions } from "../common/Actions";
 
-const ADD_TWEET = 'ADD_TWEET';
-const LIKE_TWEET = 'LIKE_TWEET';
-const SET_TWEETS = 'SET_TWEETS';
-
-const initialState = [];
+const initialState = {
+    tweetsList: []
+};
 
 export default function tweetsReducer(state = initialState, action) {
     switch (action.type) {
-        case ADD_TWEET:
-            return [...state, action.tweet];
-        case SET_TWEETS:
-            return [...action.tweets];            
-        case LIKE_TWEET:
-            break;
+        case TweetActions.ADD_TWEET_SUCCESS:
+            return { ...state, tweetsList: [...state.tweetsList, action.tweet] }
+        case TweetActions.SET_TWEETS_SUCCESS:
+            return { ...state, tweetsList: action.tweets }
+        case TweetActions.LIKE_TWEET_SUCCESS:
+            let itemIndex = state.tweetsList.findIndex((item => item.id === action.tweetId));
+            let tweetsList = [...state.tweetsList]; 
+            tweetsList[itemIndex].liked = true;
+            return {...state, tweetsList};
         default:
             return state;
     }

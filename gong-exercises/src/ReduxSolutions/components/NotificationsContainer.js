@@ -20,15 +20,15 @@ function NotificationsContainer(props) {
     )
 }
 
-const mapStateToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        notifications: store.notifications
+        notifications: state.notifications
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setNotifications: notifications => dispatch(setNotifications(notifications))
+        setNotifications: notifications => setNotifications(dispatch,notifications)
     }
 }
 

@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import GongButton from './GongButton';
 
 export default function TweetStatus(props) {
-    const [status,setStatus] = useState("What's Happening?");
+    const [status,setStatus] = useState('');
 
     const handleAddTweetItem = () => {
-        let newTweet = { id: 5 ,name: 'Chenos', description: status };
+        let newTweet = { id: new Date().getUTCMilliseconds() ,name: 'Chenos', description: status };
         props.addTweet(newTweet);
         setStatus('');
     }
@@ -19,7 +19,7 @@ export default function TweetStatus(props) {
             <div className="content">
                 <div className="profileImage"></div>
                 <div className="textUpdate">
-                    <textarea className="content" onChange={handleStatusChange} value={status}></textarea>
+                    <textarea className="content" onChange={handleStatusChange} value={status} placeholder="What's Happening?"></textarea>
                 </div>
             </div>
             <div className="actions">

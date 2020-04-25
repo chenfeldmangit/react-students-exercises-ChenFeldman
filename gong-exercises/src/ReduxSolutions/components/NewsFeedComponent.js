@@ -3,10 +3,15 @@ import NewsFeedItem from './NewsFeedItem';
 import PropTypes from 'prop-types';
 
 const NewsFeedComponent = (props) => {
+
+    const handleLikeTweet = (tweetId) => {
+        props.likeTweet(tweetId);
+    }
+
     return (
         <div id="newsFeed">
-            {props.tweets.map((item, index) => {
-                return <NewsFeedItem id={index} name={item.userName} description={item.description} />
+            {props.tweets.map((item) => {
+                return <NewsFeedItem key={item.id} likeTweet={handleLikeTweet} data={item} />
             })}
         </div>
     )
@@ -17,7 +22,7 @@ NewsFeedComponent.propTypes = {
 }
 
 NewsFeedComponent.defaultProps = {
-    tweets:[]
+    tweets: []
 }
 
 export default NewsFeedComponent;

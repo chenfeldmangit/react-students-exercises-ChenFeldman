@@ -28,8 +28,8 @@ export default class TweetAPI {
         return new Promise((resolve, reject) => {
             try {
                 let notificationsData = JSON.parse(localStorage.getItem('tweets'));
-                localStorage.setItem('notifications',JSON.stringify(notificationsData !== null ? 
-                                                [...notificationsData,{id: notificationsData.length, ...notificationData}] : [{id: 0, ...notificationData}]));
+                localStorage.setItem('notifications', JSON.stringify(notificationsData !== null ?
+                    [...notificationsData, { id: notificationsData.length, ...notificationData }] : [{ id: 0, ...notificationData }]));
                 resolve('success');
             }
             catch (err) {
@@ -42,8 +42,8 @@ export default class TweetAPI {
         return new Promise((resolve, reject) => {
             try {
                 let tweetsData = JSON.parse(localStorage.getItem('tweets'));
-                localStorage.setItem('tweets',JSON.stringify(tweetsData !== null ? 
-                                                [...tweetsData,{id: tweetsData.length, ...tweetData}] : [{id: 0, ...tweetData}]));
+                localStorage.setItem('tweets', JSON.stringify(tweetsData !== null ?
+                    [...tweetsData, tweetData] : [tweetsData]));
                 resolve('success');
             }
             catch (err) {
@@ -56,12 +56,12 @@ export default class TweetAPI {
         return new Promise((resolve, reject) => {
             try {
                 let tweetsData = JSON.parse(localStorage.getItem('tweets'));
-                tweetsData.map(item =>{
-                    if (item.id === parseInt(tweetId)){
+                tweetsData.map(item => {
+                    if (item.id === parseInt(tweetId)) {
                         item.like = true;
                     }
                 })
-                localStorage.setItem('tweets',JSON.stringify(tweetsData));
+                localStorage.setItem('tweets', JSON.stringify(tweetsData));
                 resolve('success');
             }
             catch (err) {

@@ -3,24 +3,22 @@ import TweetAPI from '../common/TweetAPI';
 import PropTypes from 'prop-types';
 
 const NewsFeedItem = (props) => {
-    const [liked,setLiked] = useState(false);
 
-    const handleLikeClick = () => {
-        TweetAPI.likeTweet(props.id);
-        setLiked(true);
+    const handleLikeClick = (tweetId) => {
+        props.likeTweet(tweetId);
     }
 
     return (
         <div class="item">
                 <div class="userProfile">
                     <div class="image"></div>
-                    <div class="name">{props.name}</div>
+                    <div class="name">{props.data.name}</div>
                 </div>
                 <div class="content">
-                    {props.description}
+                    {props.data.description}
                 </div>
                 <div class="actionsWrapper">
-                    <div class="action" onClick={handleLikeClick} style={{backgroundColor: (liked ? 'red' : 'white')}}>
+                    <div class="action" onClick={() => handleLikeClick(props.data.id)} style={{backgroundColor: (props.data.liked ? 'red' : 'white')}}>
                         <svg viewBox="0 0 24 24"
                             class="r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi">
                             <g>
@@ -37,9 +35,7 @@ const NewsFeedItem = (props) => {
 
 // An example of using prop types
 NewsFeedItem.propTypes = {
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    description : PropTypes.string.isRequired
+    id: PropTypes.number.isRequired
 }
 
 export default NewsFeedItem;
