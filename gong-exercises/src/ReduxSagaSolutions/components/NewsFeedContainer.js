@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import TweetStatus from './TweetStatus';
 import NewsFeedComponent from './NewsFeedComponent';
 import { addTweet, likeTweet } from '../actions/tweetActions';
-import { css } from "@emotion/core";
-import ClipLoader from "react-spinners/ClipLoader";
+// import { css } from "@emotion/core";
+// import ClipLoader from "react-sp inners/ClipLoader";
 
 const NewsFeedContainer = (props) => {
 
@@ -12,11 +12,11 @@ const NewsFeedContainer = (props) => {
         <div id="newsFeedWrapper">
             <TweetStatus tweets={props.tweets} addTweet={props.addTweet} />
             <NewsFeedComponent tweets={props.tweets} likeTweet={props.likeTweet} />
-            <ClipLoader
+            {/* <ClipLoader
                 size={150}
                 color={"#123abc"}
                 loading={props.loading}
-            />
+            /> */}
         </div>
     )
 }

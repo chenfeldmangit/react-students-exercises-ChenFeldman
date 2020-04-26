@@ -1,4 +1,5 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import tweetsReducer from './reducers/tweetsReducer';
 import notificationsReducer from './reducers/notificationsReducer';
 import appReducer from './reducers/appReducer';
@@ -13,8 +14,8 @@ const combinedReducers = combineReducers({
     app: appReducer
 });
 
-const middlewares = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-const store = createStore(combinedReducers,applyMiddleware(sagaMiddleware));
+// const middlewares = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+const store = createStore(combinedReducers,composeWithDevTools(applyMiddleware(sagaMiddleware)));
 
 sagaMiddleware.run(rootSaga);
 
