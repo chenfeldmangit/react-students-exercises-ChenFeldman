@@ -1,18 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import TweetAPI from '../common/TweetAPI';
 import NotificationsComponent from './NotificationsComponent';
-import { setNotifications } from '../actions/notificationsActions';
 
 function NotificationsContainer(props) {
 
-    useEffect(() => {
-        const getNotifications = async () => {
-            const notifications = await TweetAPI.getNotifications();
-            props.setNotifications(notifications);
-        }
-        getNotifications();
-    }, [])
     return (
         <div id="newsFeedWrapper">
             <NotificationsComponent notifications={props.notifications} />
@@ -26,13 +17,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setNotifications: notifications => setNotifications(dispatch,notifications)
-    }
-}
-
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(NotificationsContainer);

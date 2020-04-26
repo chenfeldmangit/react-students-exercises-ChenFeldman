@@ -1,19 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import TweetStatus from './TweetStatus';
 import NewsFeedComponent from './NewsFeedComponent';
-import { addTweet, setTweets, likeTweet,test } from '../actions/tweetActions';
+import { addTweet, likeTweet } from '../actions/tweetActions';
 import { css } from "@emotion/core";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const NewsFeedContainer = (props) => {
-
-    useEffect(() => {
-        const getTweets = async () => {
-            props.setTweets();
-        }
-        getTweets();
-    }, [])
 
     return (
         <div id="newsFeedWrapper">
@@ -38,7 +31,6 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addTweet: tweet => { addTweet(dispatch, tweet) },
-        setTweets: tweets => { setTweets(dispatch, tweets) },
         likeTweet: tweetId => { likeTweet(dispatch, tweetId) }
     }
 }

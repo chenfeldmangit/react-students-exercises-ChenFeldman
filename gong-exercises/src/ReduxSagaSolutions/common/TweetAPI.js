@@ -27,9 +27,9 @@ export default class TweetAPI {
     static addNotification = (notificationData) => {
         return new Promise((resolve, reject) => {
             try {
-                let notificationsData = JSON.parse(localStorage.getItem('tweets'));
+                let notificationsData = JSON.parse(localStorage.getItem('notifications'));
                 localStorage.setItem('notifications', JSON.stringify(notificationsData !== null ?
-                    [...notificationsData, { id: notificationsData.length, ...notificationData }] : [{ id: 0, ...notificationData }]));
+                    [...notificationsData, notificationData] : [notificationData]));
                 resolve('success');
             }
             catch (err) {
@@ -43,7 +43,7 @@ export default class TweetAPI {
             try {
                 let tweetsData = JSON.parse(localStorage.getItem('tweets'));
                 localStorage.setItem('tweets', JSON.stringify(tweetsData !== null ?
-                    [...tweetsData, tweetData] : [tweetsData]));
+                    [...tweetsData, tweetData] : [tweetData]));
                 resolve('success');
             }
             catch (err) {

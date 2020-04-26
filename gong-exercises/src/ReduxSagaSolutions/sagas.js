@@ -1,54 +1,83 @@
-import { put, takeEvery, all } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest,all,fork,call } from 'redux-saga/effects';
 import TwitterAPI from './common/TweetAPI';
-import { TweetActions } from './common/Actions';
+import { TweetActions, NotificationsActions } from './common/Actions';
 
-function* setTweetsAsync() {
-    try{
+function* setTweets() {
+    try {
         const tweets = yield TwitterAPI.getTweets();
         yield put({ type: TweetActions.SET_TWEETS_SUCCESS, tweets });
     }
-    catch(err){
+    catch (err) {
         yield put({ type: TweetActions.SET_TWEETS_FAILED });
     }
 }
 
-function* watchSetTweetsAsync() {
-    yield takeEvery(TweetActions.SET_TWEETS, setTweetsAsync);
+function* watchSetTweets() {
+    yield takeLatest(TweetActions.SET_TWEETS, setTweets);
 }
 
-function* addTweetAsync(action) {
-    try{
-        debugger;
-        yield TwitterAPI.addTweet(action.tweet);
+function* addTweet(action) {
+    try {
+        yield call(TwitterAPI.addTweet,action.tweet);
         yield put({ type: TweetActions.ADD_TWEET_SUCCESS, tweet: action.tweet });
     }
-    catch(err){
+    catch (err) {
+        console.log(`addTweet error ${err}`);
         yield put({ type: TweetActions.ADD_TWEET_FAILED });
     }
 }
 
-function* watchAddTweetAsync() {
-    yield takeEvery(TweetActions.ADD_TWEET, addTweetAsync);
+function* watchAddTweet() {
+    yield takeEvery(TweetActions.ADD_TWEET, addTweet);
 }
 
-function* likeTweetAsync(action) {
-    try{
-        yield TwitterAPI.likeTweet(action.tweetId);
+function* likeTweet(action) {
+    try {
+        yield call(TwitterAPI.likeTweet,action.tweetId);
         yield put({ type: TweetActions.LIKE_TWEET_SUCCESS, tweetId: action.tweetId });
     }
-    catch(err){
+    catch (err) {
+        console.log(`like tweet error ${err}`);
         yield put({ type: TweetActions.LIKE_TWEET_FAILED });
     }
 }
 
-function* watchLikeTweetAsync() {
-    yield takeEvery(TweetActions.LIKE_TWEET, likeTweetAsync);
+function* watchLikeTweet() {
+    yield takeEvery(TweetActions.LIKE_TWEET, likeTweet);
+    yield takeEvery(TweetActions.LIKE_TWEET, addNotification);
+}
+
+function* addNotification(tweetId) {
+    try {
+        debugger;
+        let notification = {id: tweetId, name: 'test',description: 'test description'}
+        yield call(TwitterAPI.addNotification,notification);
+        yield put({ type: NotificationsActions.ADD_NOTIFICATION_SUCCESS, notification});
+    }
+    catch (err) {
+        yield put({ type: NotificationsActions.ADD_NOTIFICATION_FAILED });
+    }
+}
+
+function* setNotifications() {
+    try {
+        const notifications = yield call(TwitterAPI.getNotifications);
+        yield put({ type: NotificationsActions.SET_NOTIFICATIONS_SUCCESS, notifications });
+    }
+    catch (err) {
+        yield put({ type: NotificationsActions.SET_NOTIFICATIONS_FAILED });
+    }
+}
+
+function* watchSetNotifications() {
+    yield takeEvery(NotificationsActions.SET_NOTIFICATIONS, setNotifications);
 }
 
 export default function* rootSaga() {
     yield all([
-        watchAddTweetAsync(),
-        watchSetTweetsAsync(),
-        watchLikeTweetAsync()
-    ])
+        watchAddTweet(),
+        watchSetTweets(),
+        watchLikeTweet(),
+        watchSetNotifications()
+    ]);
 }

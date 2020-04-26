@@ -23,10 +23,12 @@ export function likeTweetRequest(tweetId) {
 }
 
 export function setTweets(dispatch) {
+    debugger;
     dispatch(setTweetsRequest());
 }
 
 function setTweetsRequest() {
+    debugger;
     return {
         type: TweetActions.SET_TWEETS
     }

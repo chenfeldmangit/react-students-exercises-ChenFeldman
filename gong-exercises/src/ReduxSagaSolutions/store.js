@@ -13,7 +13,7 @@ const combinedReducers = combineReducers({
     app: appReducer
 });
 
-const middlewares = [window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),sagaMiddleware];
+const middlewares = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 const store = createStore(combinedReducers,applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(rootSaga);
